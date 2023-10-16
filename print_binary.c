@@ -1,34 +1,42 @@
 #include "main.h"
-void convert_and_print(unsigned int num, int *count);
 
 /**
- * print_binary - prints int to binary
- * @b: pointer to unsigned int
- * Return: integer, number of characters printed
+ *print_binary - Prints an unsigned integer in binary
+ *@argsList: va_list containing the unsigned integer to print
+ *Return: Number of characters printed.
  */
-
-int print_binary(va_list b)
+int print_binary(va_list argsList)
 {
-	unsigned int num = va_arg(b, unsigned int);
-	int count = 0;
+	unsigned int num;
+	int count;
+	int binary[32];
+	int i;
+	int size;
 
-	convert_and_print(num, &count);
+	if (argsList == NULL)
+	{
+		return (0);
+	}
+	count = 0;
+	num = va_arg(argsList, unsigned int);
+	if (num == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
+
+	size = 0;
+	while (num > 0)
+	{
+		binary[size++] = num % 2;
+		num /= 2;
+	}
+
+	for (i = size - 1; i >= 0; i--)
+	{
+		_putchar(binary[i] + '0');
+		count++;
+	}
 
 	return (count);
-}
-
-/**
- * convert_and_print - converts int to binary, then prints
- * @num: unsigned int
- * @count: pointer to count the iteration
- */
-
-void convert_and_print(unsigned int num, int *count)
-{
-	if (num / 2)
-		convert_and_print(num / 2, count);
-
-	_putchar((num % 2) + '0');
-
-	(*count)++;
 }
