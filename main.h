@@ -14,8 +14,7 @@ int print_char(va_list argsList);
 int absalute(int num);
 int printdigit(int num);
 int printinteger(int num);
-int print_int(va_list
-	var);
+int print_int(va_list var);
 int handle_format_specifier(char specifier, va_list argsList);
 int print_binary(va_list argsList);
 #endif
